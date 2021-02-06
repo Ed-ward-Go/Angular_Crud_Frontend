@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <form #empleadoForm="ngForm" (ngSubmit)="enviar(empleadoForm)">
+         
+            <input type="hidden" name="_id" [(ngModel)]="empleadoService.seleccionado._id" />
+         
+            <div class="form-group">
+            <input type="text"  name="nombre" class="form-control" placeholder="Ingresa tu nombre"
+              [(ngModel)]="empleadoService.seleccionado.nombre">
+          </div>
+          <div class="form-group">
+            <input type="text" name="cargo" class="form-control" placeholder="Ingresa cargo"
+              [(ngModel)]="empleadoService.seleccionado.cargo">
+          </div>
+          <div class="form-group">
+            <input type="text" name="oficina" class="form-control" placeholder="Ingresa oficina"
+              [(ngModel)]="empleadoService.seleccionado.oficina">
+          </div>
+          <div class="form-group">
+            <input type="number" name="salario" class="form-control" placeholder="Ingresa tu salario"
+              [(ngModel)]="empleadoService.seleccionado.salario">
+          </div>
+          <button class="btn btn-primary btn-sm mr-3" type="reset">
+            Limpiar
+          </button>
+          <button class="btn btn-success btn-sm">
+            Enviar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Cargo</th>
+          <th>Oficina </th>
+          <th>Operaciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empleado of empleadoService.empleados">
+          <td>{{empleado.nombre}}</td>
+          <td>{{empleado.cargo}}</td>
+          <td>{{empleado.oficina}}</td>
+          <td class="padding p-2">
+            <button class="btn btn-primary btn-sm mr-2" (click)="editEmpleado(empleado)">
+              <i class="material-icons">edit</i>
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="deleteEmpleado(empleado._id)">
+              <i class="material-icons">delete</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
